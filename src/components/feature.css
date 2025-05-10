@@ -1,0 +1,25 @@
+.feature-bg{
+    background: url('/feature-bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.engage-learner{
+    background: url('/engage-learner.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.global-reach{
+    background: url('/global-reach.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.flexible-pricing{
+    background: url('/flexible-pricing.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.subject-preferred-courses{
+    background: url('/subject-preferred-courses.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}

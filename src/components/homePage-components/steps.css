@@ -1,0 +1,6 @@
+.arrow{
+    background: url('/curved-arrow.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 10;
+}

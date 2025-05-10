@@ -1,0 +1,27 @@
+::-webkit-scrollbar{
+    display: none;
+}
+
+.landing_bg{
+    background: url('/landing_bg.jpg');
+    background-size: cover;
+    /* filter: brightness(80%); */
+}
+
+.landing_fg{
+    backdrop-filter: blur(8px); 
+}
+
+.facebook{
+    background: url('/facebook.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.instagram{
+    background: url('/instagram.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
