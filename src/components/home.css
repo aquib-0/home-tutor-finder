@@ -5,11 +5,15 @@
 .landing_bg{
     background: url('/landing_bg.jpg');
     background-size: cover;
+    width: 100%;
+    height: 100vh;
     /* filter: brightness(80%); */
 }
 
 .landing_fg{
     backdrop-filter: blur(8px); 
+    width: 100%;
+    height: 100%;
 }
 
 .facebook{
@@ -24,4 +28,13 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+@media (max-width: 768px) {
+    .landing_bg {
+        height: 50vh;
+    }
+    .landing_fg {
+        height: 50vh;
+    }
 }

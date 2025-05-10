@@ -42,9 +42,14 @@ const LocationMap = () => {
       >
         {userLocation && <Marker position={userLocation} />}
       </GoogleMap>
-      <button onClick={getLocation} className="px-4 py-2 text-lg rounded border border-black hover:cursor-pointer">
-        Get My Location
-      </button>
+      <div className='w-full h-auto flex justify-center gap-x-8'>
+        <button onClick={getLocation} className="px-4 py-2 text-lg rounded border border-black hover:cursor-pointer">
+          Locate Me
+        </button>
+        <button className='px-4 py-2 text-sm rounded border border-black hover:cursor-pointer'>
+          Set as default location
+        </button>
+      </div>
     </div>
   )
 }
