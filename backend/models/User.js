@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const findOrCreate = require('mongoose-findorcreate');
 const bcrypt = require('bcrypt');
 
 const userSchema = new mongoose.Schema({
@@ -29,6 +30,7 @@ userSchema.pre('save', async function (next){
         next(err);
     }
 });
+userSchema.plugin(findOrCreate); // Add the plugin
 
 const User = mongoose.model("User", userSchema);
 

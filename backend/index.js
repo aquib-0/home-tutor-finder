@@ -1,45 +1,33 @@
 const express = require('express');
+const session = require('express-session');
 const dotenv = require('dotenv');
 const userRoutes = require('./routes/userRoutes');
-// const cors = require('cors');
-// const session = require('express-session');
-// const passport = require('passport');
 const connectDB = require('./config/db');
-// require('./config/passport');
+const passport = require('passport');
+require('./config/auth');
 
 dotenv.config();
 const app = express();
+app.use(session({secret: 'cats'}));
+app.use(passport.initialize());
+app.use(passport.session());
 const PORT = process.env.PORT || 5000;
-const google_client_secret = process.env.GOOGLE_CLIENT_SECRET;
 
-// app.use(cors({
-//     origin: 'http://localhost:5173',
-//     credentials: true
-// }));
 
 app.use(express.json());
 
-// app.use(session({
-//     secret:  google_client_secret || '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',
-//     resave: false,
-//     saveUninitialized: false,
-// }));
-
-// app.use(passport.initialize());
-// app.use(passport.session());
-
 app.use('/api/users', userRoutes);
 
-// app.get('/auth/google',
-//     passport.authenticate('google', {scope: ['email', 'profile']})
-// );
+app.get('/auth/google', 
+    passport.authenticate('google', {scope: [ 'email', 'profile' ]})
+);
 
-// app.get('/auth/google/callback',
-//     passport.authenticate('google', {
-//         failureRedirect: 'http://localhost:5173/tutor-login',
-//         successRedirect: 'http://localhost:5173/dashboard',
-//     })
-// );
+app.get('/google/callback', 
+    passport.authenticate('google', {
+        successRedirect: 'http://localhost:5173/dashboard',
+        failureRedirect: 'http://localhost:5173/student-login'
+    })
+)
 
 
 connectDB()

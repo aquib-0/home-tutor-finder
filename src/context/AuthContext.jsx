@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      await fetch('/api/users/logout', {
+      await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/users/logout`, {
         method: 'GET',
         credentials: 'include',
       });
@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const checkSession = async () => {
       try {
-        const res = await fetch('/api/users/me', {
+        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/users/me`, {
           method: 'GET',
           credentials: 'include',
         });

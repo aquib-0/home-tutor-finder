@@ -1,7 +1,5 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
-// const passport = require('passport');
-// require('../config/passport');
 
 const getUser = async (req, res)=>{
     try{
@@ -32,17 +30,6 @@ const getStudents = async(req, res)=>{
         res.status(500).json({message: "Error occurred:" + err.message});
     }
 }
-
-// const createUserData = async (data) => {
-//     try {
-//         const newUser = await User.create(data);
-//         console.log("User created via passport");
-//         return newUser;
-//     } catch (err) {
-//         console.error("User creation error:", err);
-//         throw err;
-//     }
-// };
 
 const createUser = async (req, res)=>{
     const data = req.body;
@@ -84,24 +71,6 @@ const loginUser = async(req, res)=>{
         console.log(err);
     }
 }
-
-// const loginUser = (req, res, next) => {
-//     passport.authenticate('local', (err, user, info) => {
-//       if (err) return next(err);
-//       if (!user) return res.status(401).json({ message: info.message });
-  
-//       req.logIn(user, (err) => {
-//         if (err) return next(err);
-//         return res.status(200).json({
-//           _id: user._id,
-//           username: user.username,
-//           email: user.email,
-//           avatar: user.avatar,
-//           bio: user.bio,
-//         });
-//       });
-//     })(req, res, next);
-//   };
   
 
 module.exports = {getUser, createUser, loginUser, getTutors, getStudents};

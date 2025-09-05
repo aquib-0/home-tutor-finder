@@ -9,7 +9,7 @@ const LoginTutor = () => {
       const loginSubmit = async(e)=>{
           e.preventDefault();
           try{
-              const res = await fetch('http://localhost:5173/api/users/login', {
+              const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/users/login`, {
                   method: 'POST',
                   credentials: 'include',
                   headers: {'Content-Type': 'application/json'},

@@ -4,10 +4,11 @@ import LoginTutor from './authentication-components/LoginTutor'
 import RegisterStudent from './authentication-components/RegisterStudent'
 import RegisterTutor from './authentication-components/RegisterTutor'
 import { useState, useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import './login.css'
 
 const Login = () => {
+    const navigate = useNavigate();
     const [student, setStudent] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -24,9 +25,11 @@ const Login = () => {
         }
     }, [path]);
 
-    const handleGoogleLogin = () => {
-    setLoading(true);
-    window.open('http://localhost:5000/auth/google', '_self'); // Make sure backend route exists
+    const handleGoogleLogin = async() => {
+    // setLoading(true);
+    window.open(`${import.meta.env.VITE_API_BASE_URL}/auth/google`, '_self');
+        // await fetch('/api/auth/google');
+        // res.ok? console.log('login successfull') : console.log('login failure')
   };
 
   return (

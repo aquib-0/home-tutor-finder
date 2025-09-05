@@ -10,7 +10,7 @@ const DashboardTutor = () => {
 useEffect(() => {
   const fetchTutors = async () => {
     try {
-      const response = await fetch('http://localhost:5173/api/users/students');
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/users/students`);
       const data = await response.json();
       setStudents(data);
     } catch (error) {
