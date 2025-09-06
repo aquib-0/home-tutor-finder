@@ -33,7 +33,7 @@ const tutors = [
   },
 ];
 
-export const Connect = () => {
+export default Connect = () => {
   const [selectedTutor, setSelectedTutor] = useState(null);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');

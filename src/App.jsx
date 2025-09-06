@@ -1,21 +1,21 @@
 import './App.css'
 import { FaGraduationCap } from "react-icons/fa";
 import { Link, Route, Routes, useNavigate, useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import HamburgerMenu from './components/HamburgerMenu';
 import Home from './components/Home';
 import Contact from './components/Contact';
 import Feature from './components/Feature';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
-import { Connect } from './components/Connect';
+import Connect from './components/Connect';
 import PrivateRoutes from './components/PrivateRoutes';
 import DashboardTutor from './components/DashboardTutor';
-// import { useAuth } from './context/AuthContext';
 
 function App() {
-  const location = useLocation();
   const navigate = useNavigate();
-  // const {user, loading, logout} = useAuth();
+
+  const [menuOpen, setMenuOpen] = useState(false);
   const user = localStorage.getItem('user');
   const handleLogout = async ()=>{
     localStorage.removeItem('user');
@@ -25,10 +25,10 @@ function App() {
     <>
       <div className='w-[100vw] h-[100vh] flex flex-col relative'>
         <div className='w-full h-[10vh] bg-white flex justify-between items-center px-3 absolute top-0 z-10'>
-          <div className='text-2xl font-bold text-neutral-600 flex items-center gap-x-2'>
+          <div className='text:md md:text-2xl font-bold text-neutral-600 flex items-center gap-x-2'>
             <FaGraduationCap size={32} fill='#8482e6' /> Home Tutor Finder
           </div>
-          <div className='flex items-center gap-x-8'>
+          <div className='items-center gap-x-8 hidden lg:flex'>
             <Link to='/' className='hover:text-purple-500 transition-all ease-in-out'>Home</Link>
             <Link to='/feature' className='hover:text-purple-500 transition-all ease-in-out'>Feature</Link>
             <Link to='/connect' className='hover:text-purple-500 transition-all ease-in-out'>Connect</Link>
@@ -45,6 +45,7 @@ function App() {
               </>)
             }
           </div>
+          <HamburgerMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} user={user} handleLogout={handleLogout} />
         </div>
 
         <div>

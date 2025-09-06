@@ -32,6 +32,15 @@
 
 @media (max-width: 768px) {
     .landing_bg {
+        height: 80vh;
+    }
+    .landing_fg {
+        height: 80vh;
+    }
+}
+
+@media (max-width: 640px) {
+    .landing_bg {
         height: 50vh;
     }
     .landing_fg {
