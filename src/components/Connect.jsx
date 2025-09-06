@@ -33,7 +33,7 @@ const tutors = [
   },
 ];
 
-export default Connect = () => {
+const Connect = () => {
   const [selectedTutor, setSelectedTutor] = useState(null);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
@@ -155,3 +155,5 @@ export default Connect = () => {
     </div>
   );
 };
+
+export default Connect;
