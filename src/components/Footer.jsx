@@ -11,23 +11,23 @@ const Footer = () => {
         </div>
         <div className='w-full md:w-[70vw] flex justify-evenly gap-x-3'>
             <div className='flex flex-col gap-y-3'>
-                <h1 className='font-bold mb-2 text-xs sm:text-md md:text-2xl'>Product</h1>
+                <h1 className='font-bold underline mb-2 text-xs sm:text-md md:text-2xl'>Product</h1>
                 <Link className='text-xs sm:text-md md:text-lg'>Features</Link>
                 <Link className='text-xs sm:text-md md:text-lg'>Pricing</Link>
             </div>
             <div className='flex flex-col gap-y-3'>
-                <h1 className='font-bold mb-2 text-xs sm:text-md md:text-2xl'>Resources</h1>
+                <h1 className='font-bold underline mb-2 text-xs sm:text-md md:text-2xl'>Resources</h1>
                 <Link className='text-xs sm:text-md md:text-lg'>Blogs</Link>
                 <Link className='text-xs sm:text-md md:text-lg'>User guides</Link>
                 <Link className='text-xs sm:text-md md:text-lg'>Webinars</Link>
             </div>
             <div className='flex flex-col gap-y-3'>
-                <h1 className='font-bold mb-2 text-xs sm:text-md md:text-2xl'>Company</h1>
+                <h1 className='font-bold underline mb-2 text-xs sm:text-md md:text-2xl'>Company</h1>
                 <Link className='text-xs sm:text-md md:text-lg'>About Us</Link>
                 <Link className='text-xs sm:text-md md:text-lg'>Contact Us</Link>
             </div>
             <div className='flex flex-col gap-y-3'>
-                <h1 className='font-bold mb-2 text-xs sm:text-md md:text-2xl'>Plans & Pricing</h1>
+                <h1 className='font-bold underline mb-2 text-xs sm:text-md md:text-2xl'>Plans & Pricing</h1>
                 <Link className='text-xs sm:text-md md:text-lg'>Personal</Link>
                 <Link className='text-xs sm:text-md md:text-lg'>Start up</Link>
                 <Link className='text-xs sm:text-md md:text-lg'>Organization</Link>

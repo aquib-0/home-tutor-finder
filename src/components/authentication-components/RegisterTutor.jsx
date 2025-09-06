@@ -37,7 +37,7 @@ const RegisterTutor = () => {
       };
 
   return (
-    <div className='w-full h-fit flex flex-col gap-y-8'>
+    <div className='w-full h-fit flex flex-col gap-y-6'>
         <input type="text" placeholder='enter your username: Henry-cavill' value={username} onChange={(e)=> setUsername(e.target.value)} required className='h-[40px] border border-black rounded-md p-4 placeholder:text-gray-200 text-white font-extralight' />
         <input type="email" placeholder='enter your email: xyz@gmail.com' value={email} onChange={(e)=> setEmail(e.target.value)} required className='h-[40px] border border-black rounded-md p-4 placeholder:text-gray-200 text-white font-extralight' />
         <input type="text" placeholder='enter password: 12**cvx' value={password} onChange={(e)=> setPassword(e.target.value)} required className='h-[40px] border border-black rounded-md p-4 placeholder:text-gray-200 text-white font-extralight' />
