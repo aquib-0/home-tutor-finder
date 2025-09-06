@@ -14,11 +14,11 @@ const HamburgerMenu = ({menuOpen, setMenuOpen, user, handleLogout}) => {
         </button>
         
         {menuOpen && (
-        <div className='flex flex-col w-[100vw] justify-center items-center gap-y-10 p-8 text-xl lg:text-2xl bg-fuchsia-100 absolute top-20 left-0'>
-            <Link to='/' onClick={()=>setMenuOpen(false)} className='hover:text-purple-500 transition-all ease-in-out'>Home</Link>
-            <Link to='/feature' onClick={()=>setMenuOpen(false)} className='hover:text-purple-500 transition-all ease-in-out'>Feature</Link>
-            <Link to='/connect' onClick={()=>setMenuOpen(false)} className='hover:text-purple-500 transition-all ease-in-out'>Connect</Link>
-            <Link to='/contact' onClick={()=>setMenuOpen(false)} className='hover:text-purple-500 transition-all ease-in-out'>Contact Us</Link>
+        <div className='flex flex-col w-[98vw] rounded-2xl justify-center items-center gap-y-10 p-8 text-xl lg:text-2xl text-black bg-fuchsia-100 fixed top-3 left-2'>
+            <Link to='/' onClick={()=>setMenuOpen(false)}>Home</Link>
+            <Link to='/feature' onClick={()=>setMenuOpen(false)}>Feature</Link>
+            <Link to='/connect' onClick={()=>setMenuOpen(false)}>Connect</Link>
+            <Link to='/contact' onClick={()=>setMenuOpen(false)}>Contact Us</Link>
             {
               user? (
               <>
