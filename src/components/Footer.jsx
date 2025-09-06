@@ -10,27 +10,27 @@ const Footer = () => {
             <FaGraduationCap size={32} fill='#8482e6' /> Home Tutor Finder
         </div>
         <div className='w-full md:w-[70vw] flex justify-evenly gap-x-3'>
-            <div className='flex flex-col gap-y-3 text-xs sm:text-md md:text-2xl'>
-                <h1 className='font-bold mb-2'>Product</h1>
-                <Link>Features</Link>
-                <Link>Pricing</Link>
+            <div className='flex flex-col gap-y-3'>
+                <h1 className='font-bold mb-2 text-xs sm:text-md md:text-2xl'>Product</h1>
+                <Link className='text-xs sm:text-md md:text-lg'>Features</Link>
+                <Link className='text-xs sm:text-md md:text-lg'>Pricing</Link>
             </div>
-            <div className='flex flex-col gap-y-3 text-xs sm:text-md md:text-2xl'>
-                <h1 className='font-bold mb-2'>Resources</h1>
-                <Link>Blogs</Link>
-                <Link>User guides</Link>
-                <Link>Webinars</Link>
+            <div className='flex flex-col gap-y-3'>
+                <h1 className='font-bold mb-2 text-xs sm:text-md md:text-2xl'>Resources</h1>
+                <Link className='text-xs sm:text-md md:text-lg'>Blogs</Link>
+                <Link className='text-xs sm:text-md md:text-lg'>User guides</Link>
+                <Link className='text-xs sm:text-md md:text-lg'>Webinars</Link>
             </div>
-            <div className='flex flex-col gap-y-3 text-xs sm:text-md md:text-2xl'>
-                <h1 className='font-bold mb-2'>Company</h1>
-                <Link>About Us</Link>
-                <Link>Contact Us</Link>
+            <div className='flex flex-col gap-y-3'>
+                <h1 className='font-bold mb-2 text-xs sm:text-md md:text-2xl'>Company</h1>
+                <Link className='text-xs sm:text-md md:text-lg'>About Us</Link>
+                <Link className='text-xs sm:text-md md:text-lg'>Contact Us</Link>
             </div>
-            <div className='flex flex-col gap-y-3 text-xs sm:text-md md:text-2xl'>
-                <h1 className='font-bold mb-2'>Plans & Pricing</h1>
-                <Link>Personal</Link>
-                <Link>Start up</Link>
-                <Link>Organization</Link>
+            <div className='flex flex-col gap-y-3'>
+                <h1 className='font-bold mb-2 text-xs sm:text-md md:text-2xl'>Plans & Pricing</h1>
+                <Link className='text-xs sm:text-md md:text-lg'>Personal</Link>
+                <Link className='text-xs sm:text-md md:text-lg'>Start up</Link>
+                <Link className='text-xs sm:text-md md:text-lg'>Organization</Link>
             </div>
         </div>
         <div className='border-t border-black mt-8 w-[90vw] h-[10vh] flex justify-end items-center'>
