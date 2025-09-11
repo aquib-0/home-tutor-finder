@@ -3,8 +3,8 @@ import {useState, useCallback} from 'react';
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
 
 const mapContainerStyle = {
-    width: "100%",
-    height: "900px",
+    width: "50%",
+    height: "400px",
 };
 
 const defaultCenter = {

@@ -16,20 +16,14 @@ const RegisterTutor = () => {
                   alert('Confirm password error');
                   return;
               }
-              const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/users/register`, {
+              const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/auth/register`, {
                   method: 'POST',
                   headers: {'Content-Type': 'application/json'},
                   body: JSON.stringify({username, email, password, role:"tutor"})
               });
   
-              const data = await res.json();
-              if(res.ok){
-                  localStorage.setItem('user', JSON.stringify(data));
-                  navigate('/dashboard-tutor');
-              }
-              else{
-                  alert(data.message || 'Register Failed');
-              }
+            const message = await res.json();
+            console.log(message.msg);
           } catch(err){
               console.log(err);
               alert('An error occurred');

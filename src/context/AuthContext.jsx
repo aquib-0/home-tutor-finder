@@ -5,51 +5,27 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);   // will store user data
+  const [isAuthenticated, setIsAuthenticated]  = useState(false);
   const [loading, setLoading] = useState(true); // prevent flickering
 
-  const logout = async () => {
-    try {
-      await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/users/logout`, {
-        method: 'GET',
-        credentials: 'include',
-      });
-      setUser(null);
-    } catch (err) {
-      console.error('Logout failed', err);
-    }
+  const login = (userData)=>{
+    setUser(userData);
+    setIsAuthenticated(true);
   };
 
-  useEffect(() => {
-    const checkSession = async () => {
-      try {
-        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/users/me`, {
-          method: 'GET',
-          credentials: 'include',
-        });
-
-        if (res.ok) {
-          const data = await res.json();
-          setUser(data); // user object from session
-        } else {
-          setUser(null);
-        }
-      } catch (err) {
-        console.error('Session check failed:', err);
-        setUser(null);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    checkSession();
-  }, []);
+  const logout = () => {
+    setUser(null);
+    setIsAuthenticated(false);
+  };
 
   return (
-    <AuthContext.Provider value={{ user, setUser, loading, logout }}>
+    <AuthContext.Provider value={{ user, loading, setLoading ,login, logout, isAuthenticated }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-// Custom hook to use auth context
-export const useAuth = () => useContext(AuthContext);
+
+export const useAuth = () => {
+  return useContext(AuthContext);
+};

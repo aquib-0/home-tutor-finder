@@ -10,7 +10,18 @@ const DashboardTutor = () => {
 useEffect(() => {
   const fetchTutors = async () => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/users/students`);
+      const token = localStorage.getItem('token');
+      if (!token) {
+        console.log("No token found, user is not logged in.");
+        return navigate('/');
+    }
+      
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/protected/students`,{
+        method: 'GET',
+        headers: {
+          'x-auth-token': localStorage.getItem('token'),
+        },
+      });
       const data = await response.json();
       setStudents(data);
     } catch (error) {
@@ -24,7 +35,7 @@ useEffect(() => {
   return (
     <div className='w-[100vw] h-[100vh] flex flex-col justify-center items-center text-2xl font-bold gap-y-10 overflow-y-scroll'>
       <LocationMap />
-      <div className='w-full h-auto flex flex-wrap gap-x-10 gap-y-10 mb-14 px-5'>
+      <div className='w-full h-[430px] flex flex-wrap gap-x-10 gap-y-10 mb-14 px-5'>
         {
           students.map(student => (
             <TutorCard key={student._id} tutor={student} />

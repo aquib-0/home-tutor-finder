@@ -11,14 +11,18 @@ import Dashboard from './components/Dashboard';
 import Connect from './components/Connect';
 import PrivateRoutes from './components/PrivateRoutes';
 import DashboardTutor from './components/DashboardTutor';
+import { useAuth } from './context/AuthContext';
 
 function App() {
   const navigate = useNavigate();
 
+  const {isAuthenticated, logout} = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
-  const user = localStorage.getItem('user');
+
   const handleLogout = async ()=>{
     localStorage.removeItem('user');
+    localStorage.removeItem('token');
+    logout();
     navigate('/');
   }
   return (
@@ -34,7 +38,7 @@ function App() {
             <Link to='/connect' className='hover:text-purple-500 transition-all ease-in-out'>Connect</Link>
             <Link to='/contact' className='hover:text-purple-500 transition-all ease-in-out'>Contact Us</Link>
             {
-              user? (
+              isAuthenticated? (
               <>
                 <button className='hover:cursor-pointer bg-purple-400 text-white rounded-xl px-10 py-2' onClick={handleLogout}>Logout</button>
               </>
@@ -45,7 +49,7 @@ function App() {
               </>)
             }
           </div>
-          <HamburgerMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} user={user} handleLogout={handleLogout} />
+          <HamburgerMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} handleLogout={handleLogout} />
         </div>
 
         <div>
@@ -56,7 +60,7 @@ function App() {
             <Route path='/student-login' element={<Login />} />
             <Route path='/tutor-login' element={<Login />} />
             <Route path='/connect' element={<Connect />} />
-            <Route path='/dashboard' element={<PrivateRoutes><Dashboard /></PrivateRoutes>} />
+            <Route path='/dashboard' element={<PrivateRoutes><Dashboard /></PrivateRoutes>} /> 
             <Route path='/dashboard-tutor' element={<PrivateRoutes><DashboardTutor /></PrivateRoutes>} />
           </Routes>
         </div>

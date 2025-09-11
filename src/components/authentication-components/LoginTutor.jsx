@@ -1,29 +1,44 @@
 import React from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 
 const LoginTutor = () => {
   const navigate = useNavigate();
+  const {login} = useAuth();
       const [email, setLoginEmail] = useState('');
       const [password, setLoginPassword] = useState('');
       const loginSubmit = async(e)=>{
           e.preventDefault();
           try{
-              const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/users/login`, {
+              const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/auth/login`, {
                   method: 'POST',
                   credentials: 'include',
                   headers: {'Content-Type': 'application/json'},
                   body: JSON.stringify({email, password})
               });
   
-              const data = await res.json();
-              if(res.ok){
-                  localStorage.setItem('user', JSON.stringify(data));
-                  navigate('/dashboard-tutor');
+              if(res.ok)
+              {
+                const data = await res.json();
+                const token = data.token;
+                localStorage.setItem('token', token);
+
+                const userPayload = JSON.parse(atob(data.token.split('.')[1]));
+                localStorage.setItem('user', userPayload);
+                login(userPayload);
+
+                console.log("Login successfull, token stored.");
+                navigate('/dashboard-tutor');
               }
-              else{
-                  alert(data.message || 'Login Failed');
-              }
+              else {
+      // ---- HANDLE FAILED LOGIN ----
+      const errorData = await res.json(); // Get the error message from the body
+      console.error('Login failed:', errorData.msg);
+      // Display an error message to the user (e.g., in an alert or a div)
+      alert(errorData.msg || 'An error occurred. Please try again.');
+    }
+
           } catch(err){
               console.log(err);
               alert('AN error occurred');
