@@ -8,6 +8,17 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated]  = useState(false);
   const [loading, setLoading] = useState(true); // prevent flickering
 
+  useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            // Here you might want to add token verification logic
+            // For now, we'll assume if a token exists, the user is authenticated
+            setIsAuthenticated(true);
+        }
+        // Finished checking, set loading to false
+        setLoading(false);
+    }, []); // Empty dependency array means it runs only on mount
+
   const login = (userData)=>{
     setUser(userData);
     setIsAuthenticated(true);
