@@ -23,7 +23,20 @@ useEffect(() => {
         'x-auth-token': token,
       },
     });
+    if (!response.ok) {
+        const errorData = await response.json();
+        console.error("Error fetching tutors:", errorData);
+
+        if (response.status === 401) {
+          // invalid/expired token → logout and redirect
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+          navigate('/');
+        }
+        return;
+      }
     const data = await response.json();
+    console.log(data);
     setTutors(data);
 
   } catch (error) {
@@ -32,7 +45,7 @@ useEffect(() => {
 };
 
   fetchTutors();
-}, []);
+}, [navigate]);
 
   return (
     <div className='w-[100vw] h-[100vh] flex flex-col justify-center items-center text-2xl font-bold gap-y-10 overflow-y-scroll'>

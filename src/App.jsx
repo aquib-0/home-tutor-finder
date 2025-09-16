@@ -20,8 +20,8 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleLogout = async ()=>{
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
+    // localStorage.removeItem('user');
+    // localStorage.removeItem('token');
     logout();
     navigate('/');
   }
