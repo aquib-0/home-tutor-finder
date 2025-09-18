@@ -33,7 +33,7 @@ function VideoUploadForm() {
     try {
       const token = localStorage.getItem('token'); // Or wherever you store your token
 
-      const response = await fetch('/api/protected/upload-to-drive', {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/protected/upload-to-drive`, {
         method: 'POST',
         headers: {
           // Use the auth header your backend expects
