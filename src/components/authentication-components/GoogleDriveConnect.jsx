@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 const GoogleDriveConnect = () => {
     const handleConnect = async () => {
     try {
@@ -12,7 +13,7 @@ const GoogleDriveConnect = () => {
         }
 
       // 1. Fetch the authorization URL from your backend
-      const response = await fetch('http://localhost:5000/api/auth/google',{
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/auth/google`,{
         headers: {
             'x-auth-token': token
         }
