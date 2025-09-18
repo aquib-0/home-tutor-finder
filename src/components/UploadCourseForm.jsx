@@ -17,7 +17,8 @@ const UploadCourseForm = () => {
     event.preventDefault(); // Prevent default form submission
     
     if (!video) {
-      setMessage('Please select a video file to upload.');
+      // setMessage('Please select a video file to upload.');
+      console.log("please select a video")
       return;
     }
 
