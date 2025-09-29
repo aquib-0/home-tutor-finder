@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import {jwtDecode} from 'jwt-decode';
+import { Link } from 'react-router-dom';
 
-const LoginStudent = () => {
+const LoginForm = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
   const [email, setLoginEmail] = useState('');
@@ -29,7 +30,14 @@ const LoginStudent = () => {
         login(token, userPayload);
 
         console.log("Login successful, token stored.");
-        navigate('/dashboard');
+        if(userPayload.user.role == 'Student')
+        {
+            navigate('/dashboard');
+        }
+        else if(userPayload.user.role == 'Tutor')
+        {
+            navigate('/dashboard-tutor');
+        }
       } else {
         const errorData = await res.json();
         console.error('Login failed:', errorData.msg);
@@ -65,8 +73,11 @@ const LoginStudent = () => {
       >
         Login
       </button>
+      <span className='self-center text-white'>
+        <Link to='/register' className='underline'>Don't have an account? SignUp</Link>
+      </span>
     </div>
   )
 }
 
-export default LoginStudent;
+export default LoginForm;

@@ -27,7 +27,7 @@ const HeroSection = () => {
             <button
               className="text-white bg-purple-400 p-2 md:p-4 rounded-2xl hover:cursor-pointer"
               onClick={() => {
-                navigate("/tutor-login");
+                navigate("/login");
               }}
             >
               Are you a tutor ?

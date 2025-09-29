@@ -8,5 +8,5 @@ export default function PrivateRoutes({ children }) {
         return <div>Loading...</div>; // Or a spinner component
     }
 
-  return isAuthenticated ? children : <Navigate to='/student-login' />;
+  return isAuthenticated ? children : <Navigate to='/login' />;
 }

@@ -27,8 +27,8 @@ const {isAuthenticated} = useAuth();
               </>
               ) : (
               <>
-                <button className='hover:cursor-pointer bg-purple-400 text-white rounded-xl px-10 py-2' onClick={()=>{navigate('/student-login'); setMenuOpen(false);}}>Register</button>
-                <button className='hover:cursor-pointer bg-gray-300 text-purple-400 rounded-xl px-10 py-2' onClick={()=>{navigate('/student-login'); setMenuOpen(false);}}>Sign in</button>
+                <button className='hover:cursor-pointer bg-purple-400 text-white rounded-xl px-10 py-2' onClick={()=>{navigate('/register'); setMenuOpen(false);}}>Register</button>
+                <button className='hover:cursor-pointer bg-gray-300 text-purple-400 rounded-xl px-10 py-2' onClick={()=>{navigate('/login'); setMenuOpen(false);}}>Sign in</button>
               </>)
             }
         </div>

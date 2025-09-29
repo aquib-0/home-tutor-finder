@@ -7,6 +7,7 @@ import Home from './components/Home';
 import Contact from './components/Contact';
 import Feature from './components/Feature';
 import Login from './components/Login';
+import Register from './components/Register';
 import Dashboard from './components/Dashboard';
 import Connect from './components/Connect';
 import PrivateRoutes from './components/PrivateRoutes';
@@ -20,11 +21,8 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleLogout = async ()=>{
-    // localStorage.removeItem('user');
-    // localStorage.removeItem('token');
     logout();
-    navigate('/');
-  }
+  };
   return (
     <>
       <div className='w-[100vw] h-[100vh] flex flex-col relative'>
@@ -44,8 +42,8 @@ function App() {
               </>
               ) : (
               <>
-                <button className='hover:cursor-pointer bg-purple-400 text-white rounded-xl px-10 py-2' onClick={()=>{navigate('/student-login')}}>Register</button>
-                <button className='hover:cursor-pointer bg-gray-300 text-purple-400 rounded-xl px-10 py-2' onClick={()=>{navigate('/student-login')}}>Sign in</button>
+                <button className='hover:cursor-pointer bg-purple-400 text-white rounded-xl px-10 py-2' onClick={()=>{navigate('/register')}}>Register</button>
+                <button className='hover:cursor-pointer bg-gray-300 text-purple-400 rounded-xl px-10 py-2' onClick={()=>{navigate('/login')}}>Sign in</button>
               </>)
             }
           </div>
@@ -57,8 +55,8 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/contact' element={<Contact />} />
             <Route path='/feature' element={<Feature />} />
-            <Route path='/student-login' element={<Login />} />
-            <Route path='/tutor-login' element={<Login />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
             <Route path='/connect' element={<Connect />} />
             <Route path='/dashboard' element={<PrivateRoutes><Dashboard /></PrivateRoutes>} /> 
             <Route path='/dashboard-tutor' element={<PrivateRoutes><DashboardTutor /></PrivateRoutes>} />
