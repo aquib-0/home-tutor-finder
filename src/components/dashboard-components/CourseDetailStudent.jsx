@@ -6,7 +6,6 @@ import { useAuth } from '../../context/AuthContext';
 const CourseDetailStudent = () => {
     const {user} = useAuth();
     const [enrolled, setEnrolled] = useState(false);
-    const {id} = useParams();
     const location = useLocation();
     const course = location.state?.course;
 
@@ -21,10 +20,12 @@ const CourseDetailStudent = () => {
                     },
                 });
                 const data = await res.json();
+                const foundCourses = Object.values(data);
+                console.log(foundCourses);
                 if(res.ok)
                 {
-                    const course = data.find(eachCourse=> eachCourse._id === course._id);
-                    if(course) setEnrolled(true);
+                    const alreadyEnrolled = foundCourses.includes(course._id);
+                    if(alreadyEnrolled) setEnrolled(true);
                 }
                 else{
                   console.log("Some error occurred");
@@ -65,7 +66,7 @@ const CourseDetailStudent = () => {
         {
             console.error(err.message);
         }
-    }
+    };
 
   return (
     <div className='w-[100vw] h-[100vh] flex flex-col justify-center items-start px-2'>
