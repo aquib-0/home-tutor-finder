@@ -48,13 +48,14 @@ const UploadCourseForm = () => {
         },
         body: formData, // The FormData object
       });
-
       const data = await response.json();
-
       if (!response.ok) {
         throw new Error(data.message || 'Failed to upload video.');
       }
-
+      
+      console.log(data);
+      alert('Course and video uploaded successfully');
+      window.location.reload();
     //   setMessage(`Success! Video uploaded. URL: ${data.video.videoUrl}`);
 
     } catch (error) {

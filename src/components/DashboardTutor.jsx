@@ -20,7 +20,7 @@ useEffect(() => {
         return navigate('/');
     }
       
-      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/protected/courses`,{
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/protected/created-courses`,{
         method: 'GET',
         headers: {
           'x-auth-token': localStorage.getItem('token'),

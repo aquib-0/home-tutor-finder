@@ -9,9 +9,12 @@ import Feature from './components/Feature';
 import Login from './components/Login';
 import Register from './components/Register';
 import Dashboard from './components/Dashboard';
+import DashboardTutor from './components/DashboardTutor';
+// import CourseDetail from './components/dashboard-components/CourseDetail';
+import CourseDetailStudent from './components/dashboard-components/CourseDetailStudent';
+import CourseDetailTutor from './components/dashboard-components/CourseDetailTutor';
 import Connect from './components/Connect';
 import PrivateRoutes from './components/PrivateRoutes';
-import DashboardTutor from './components/DashboardTutor';
 import { useAuth } from './context/AuthContext';
 
 function App() {
@@ -60,6 +63,8 @@ function App() {
             <Route path='/connect' element={<Connect />} />
             <Route path='/dashboard' element={<PrivateRoutes><Dashboard /></PrivateRoutes>} /> 
             <Route path='/dashboard-tutor' element={<PrivateRoutes><DashboardTutor /></PrivateRoutes>} />
+            <Route path='/tutor/my-course/:id' element={<PrivateRoutes><CourseDetailTutor /></PrivateRoutes>} />
+            <Route path='/student/course/:id' element={<PrivateRoutes><CourseDetailStudent /></PrivateRoutes>} />
           </Routes>
         </div>
       </div>

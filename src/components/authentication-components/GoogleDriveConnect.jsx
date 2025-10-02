@@ -4,7 +4,6 @@ import React from 'react'
 const GoogleDriveConnect = () => {
     const handleConnect = async () => {
     try {
-
         const token = localStorage.getItem('token');
         if(!token)
         {
