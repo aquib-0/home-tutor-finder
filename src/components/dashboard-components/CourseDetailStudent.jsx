@@ -95,7 +95,7 @@ const CourseDetailStudent = () => {
         <span>Students enrolled: </span> {course.enrolledStudentsCount}
       </div>
       {
-        enrolled? (<><span className='self-end mt-5 rounded-md px-4 py-2'>Already enrolled in course!</span></>) : (<button className='self-end mt-5 rounded-md px-4 py-2 bg-green-400 hover:cursor-pointer text-white' onClick={enrollInCourse}>Enroll in Course</button>)
+        enrolled? (<><button className='self-end mt-5 rounded-md bg-red-500 text-white hover:cursor-pointer px-4 py-2'>Leave course</button></>) : (<button className='self-end mt-5 rounded-md px-4 py-2 bg-green-400 hover:cursor-pointer text-white' onClick={enrollInCourse}>Enroll in Course</button>)
       }
     </div>
   )

@@ -13,7 +13,7 @@ const CourseDetailTutor = () => {
     const deleteCourse = async()=>{
         const token = localStorage.getItem('token');
         try{
-            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/protected/delete-course`, {
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/protected/delete-course?courseId=${course._id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
