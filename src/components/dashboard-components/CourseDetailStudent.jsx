@@ -1,9 +1,10 @@
 import React from 'react'
-import { useParams, useLocation } from 'react-router-dom'
+import { useParams, useLocation, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 
 const CourseDetailStudent = () => {
+    const navigate = useNavigate();
     const {user} = useAuth();
     const [enrolled, setEnrolled] = useState(false);
     const location = useLocation();
@@ -68,6 +69,34 @@ const CourseDetailStudent = () => {
         }
     };
 
+    const leaveCourse = async()=>{
+        const token = localStorage.getItem('token');
+        try{
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/protected/leave-course?studentId=${user.user.id}&courseId=${course._id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-auth-token': token,
+                },
+                // body: JSON.stringify({studentId: user.user.id, courseId: course._id}),
+            });
+            const data = await response.json();
+            if(response.ok)
+            {
+                alert('Course removed successfully');
+                console.log(data);
+                navigate('/dashboard');
+                //window.location.reload();
+            }
+            else{
+                console.log(data);
+            }
+        } catch(err)
+        {
+            console.error(err.message);
+        }
+    };
+
   return (
     <div className='w-[100vw] h-[100vh] flex flex-col justify-center items-start px-2'>
       <div className='w-full flex justify-start bg-gray-300'>
@@ -95,7 +124,7 @@ const CourseDetailStudent = () => {
         <span>Students enrolled: </span> {course.enrolledStudentsCount}
       </div>
       {
-        enrolled? (<><button className='self-end mt-5 rounded-md bg-red-500 text-white hover:cursor-pointer px-4 py-2'>Leave course</button></>) : (<button className='self-end mt-5 rounded-md px-4 py-2 bg-green-400 hover:cursor-pointer text-white' onClick={enrollInCourse}>Enroll in Course</button>)
+        enrolled? (<><button onClick={leaveCourse} className='self-end mt-5 rounded-md bg-red-500 text-white hover:cursor-pointer px-4 py-2'>Leave course</button></>) : (<button className='self-end mt-5 rounded-md px-4 py-2 bg-green-400 hover:cursor-pointer text-white' onClick={enrollInCourse}>Enroll in Course</button>)
       }
     </div>
   )

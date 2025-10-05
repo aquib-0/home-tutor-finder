@@ -1,29 +1,33 @@
 import React from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { useAuth } from '../../context/AuthContext';
 
 const CourseCard = ({course}) => {
+  const {user} = useAuth();
   const [fetchPath, setFetchPath] = useState('');
   const location = useLocation();
   const path = location.pathname;
   useEffect(()=>{
     const setFetchUrl = ()=>{
-      if(path === `/dashboard`)
-  {
-    setFetchPath('/student/course')
-  }
-  else if(path === `/dashboard-tutor`){
-    setFetchPath('/tutor/my-course')
-  }
+      //use user.user.role to check if user is student or tutor
+      if(user.user.role === `Student`)
+      {
+        setFetchPath('/student/course')
+      }
+      else if(user.user.role === `Tutor`)
+      {
+        setFetchPath('/tutor/my-course')
+      }
     }
     setFetchUrl();
   }, []);
 
   return (
     <Link to={`${fetchPath}/:${course._id}`} state={{course}}>
-      <div className="w-[300px] h-[400px] rounded-lg border border-gray-200 shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col overflow-hidden">
+      <div className="w-[20vw] h-[50vh] rounded-lg border border-gray-200 shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col overflow-hidden">
         {/* Course Image */}
-        <div className="h-[200px] w-full bg-gray-200 overflow-hidden">
+        <div className="h-[50%] w-full bg-gray-200 overflow-hidden">
           <img
             src={course.authorDp || "https://via.placeholder.com/200"}
             alt={`${course.courseName}`}

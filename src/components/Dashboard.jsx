@@ -1,6 +1,7 @@
 import LocationMap from './LocationMap'
 import { useState, useEffect } from 'react'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate, Link } from 'react-router-dom'
+import { MdKeyboardArrowRight } from "react-icons/md";
 import TutorCard from './dashboard-components/TutorCard'
 import CourseCard from './dashboard-components/CourseCard'
 
@@ -49,14 +50,16 @@ useEffect(() => {
 }, [navigate]);
 
   return (
-    <div className='w-[100vw] h-[100vh] flex justify-center items-center'>
+    <div className='w-[100vw] flex flex-col justify-center items-start px-6 py-20'>
       {/* <LocationMap /> */}
-      <div className='w-full h-[70vh] border border-amber-400 flex flex-wrap gap-x-3 justify-center relative'>
-        {
+      <h1 className='text-3xl font-bold py-5 text-gray-400'>Dashboard</h1>
+      <Link to='/all-courses' state={{courses}} className='font-bold text-2xl underline flex items-end mb-3'>All Courses<span><MdKeyboardArrowRight size={28} /></span></Link>
+      <div className='w-full flex gap-x-16 justify-start items-start relative overflow-hidden'>
+          {
           courses.map(course => (
             <CourseCard key={course._id} course={course} />
           ))
-        }
+          }
       </div>
     </div>
   )

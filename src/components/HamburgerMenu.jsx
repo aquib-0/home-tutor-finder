@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoCloseOutline } from "react-icons/io5";
+import ProfileMenu from './ProfileMenu';
 import { useAuth } from '../context/AuthContext';
 
 const HamburgerMenu = ({menuOpen, setMenuOpen, handleLogout}) => {
@@ -23,6 +24,7 @@ const {isAuthenticated} = useAuth();
             {
               isAuthenticated? (
               <>
+                <Link to='my-profile' onClick={()=>setMenuOpen(false)}>My Profile</Link>
                 <button className='hover:cursor-pointer bg-purple-400 text-white rounded-xl px-10 py-2' onClick={()=>{handleLogout(); setMenuOpen(false);}}>Logout</button>
               </>
               ) : (

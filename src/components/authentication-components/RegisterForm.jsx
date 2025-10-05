@@ -43,7 +43,10 @@ const RegisterForm = () => {
         <input type="email" placeholder='enter your email: xyz@gmail.com' value={email} onChange={(e)=> setEmail(e.target.value)} required className='h-[40px] border border-black rounded-md p-4 placeholder:text-gray-200 text-white font-extralight' />
         <input type="text" placeholder='enter password: 12**cvx' value={password} onChange={(e)=> setPassword(e.target.value)} required className='h-[40px] border border-black rounded-md p-4 placeholder:text-gray-200 text-white font-extralight' />
         <input type="password" placeholder='confirm password: 12**cvx' value={confirmPassword} onChange={(e)=> setConfirmPassword(e.target.value)} required className='h-[40px] border border-black rounded-md p-4 placeholder:text-gray-200 text-white font-extralight' />
-        <div className='w-full flex justify-center items-center gap-x-10'>
+        <div className='w-full flex justify-between items-center gap-x-10'>
+            <span>
+                <h1 className='text-white font-bold text-xl'>Role</h1>
+            </span>
             <span className='w-fit flex gap-x-2'>
                 <label htmlFor="student-radio">Student</label>
                 <input id='student-radio' type="radio" name='role' value='Student' checked={role === 'Student'} onChange={(e)=> setRole(e.target.value)} />

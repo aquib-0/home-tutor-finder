@@ -37,10 +37,10 @@ useEffect(() => {
 }, []);
 
   return (
-    <div className='w-[100vw] h-[100vh] flex flex-col justify-start items-center pt-20 gap-y-3 overflow-y-scroll mb-10 relative'>
+    <div className='w-[100vw] h-[100vh] flex flex-col justify-start items-center py-20 gap-y-3 overflow-y-scroll mb-10 relative'>
       {/* <LocationMap /> */}
       <GoogleDriveConnect />
-      <div className='w-full h-[70vh] border border-amber-400 flex flex-wrap gap-x-3 justify-center relative'>
+      <div className='w-full flex flex-wrap gap-x-3 gap-y-3 justify-start px-3 relative'>
         <UploadCourseForm />
         {
           courses.map(course=>(
