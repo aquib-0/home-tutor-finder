@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams, useLocation, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 
@@ -7,13 +7,15 @@ const CourseDetailStudent = () => {
     const navigate = useNavigate();
     const {user} = useAuth();
     const [enrolled, setEnrolled] = useState(false);
-    const location = useLocation();
-    const course = location.state?.course;
+    const [loading, setLoading] = useState(false);
+    const [course, setCourse] = useState(Object);  
+    const {id} = useParams();
 
     useEffect(()=>{
         const isEnrolled = async()=>{
+            setLoading(true);
             try{
-                const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/protected/get-enrolled-courses?user_id=${user.user.id}`, {
+                const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/protected/get-course-by-id?courseId=${id}`, {
                     method: 'GET',
                     headers: {
                         'x-auth-token': localStorage.getItem('token'),
@@ -21,21 +23,24 @@ const CourseDetailStudent = () => {
                     },
                 });
                 const data = await res.json();
-                const foundCourses = Object.values(data);
-                console.log(foundCourses);
                 if(res.ok)
                 {
-                    const alreadyEnrolled = foundCourses.includes(course._id);
+                    console.log(data);
+                    setCourse(data);
+                    const alreadyEnrolled = data.enrolledStudents.includes(user.user.id);
                     if(alreadyEnrolled) setEnrolled(true);
                 }
                 else{
                   console.log("Some error occurred");
-                  console.log(data);
+                  console.log(data.message);
                   setEnrolled(false);
                 }
             } catch(err)
             {
                 console.log(err.message);
+            }
+            finally{
+              setLoading(false);
             }
         }
 
@@ -45,7 +50,7 @@ const CourseDetailStudent = () => {
     const enrollInCourse = async()=>{
         const token = localStorage.getItem('token');
         try{
-            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/protected/enroll-in-course?studentId=${user.user.id}&courseId=${course._id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/protected/enroll-in-course?studentId=${user.user.id}&courseId=${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -57,11 +62,10 @@ const CourseDetailStudent = () => {
             if(response.ok)
             {
                 alert('Enrolled in course successfully');
-                console.log(data);
                 window.location.reload();
             }
             else{
-                console.log(data);
+                console.log(data.message);
             }
         } catch(err)
         {
@@ -72,7 +76,7 @@ const CourseDetailStudent = () => {
     const leaveCourse = async()=>{
         const token = localStorage.getItem('token');
         try{
-            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/protected/leave-course?studentId=${user.user.id}&courseId=${course._id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/protected/leave-course?studentId=${user.user.id}&courseId=${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -89,7 +93,7 @@ const CourseDetailStudent = () => {
                 //window.location.reload();
             }
             else{
-                console.log(data);
+                console.log(data.message);
             }
         } catch(err)
         {
@@ -98,7 +102,8 @@ const CourseDetailStudent = () => {
     };
 
   return (
-    <div className='w-[100vw] h-[100vh] flex flex-col justify-center items-start px-2'>
+      loading? (<><div className='w-[100vw] h-[100vh] flex justify-center items-center'>Loading...</div></>) : (
+        <div className='w-[100vw] h-[100vh] flex flex-col justify-center items-start px-2'>
       <div className='w-full flex justify-start bg-gray-300'>
         <img src={course.authorDp} alt="authordp" width='80px' />
       </div>
@@ -124,9 +129,10 @@ const CourseDetailStudent = () => {
         <span>Students enrolled: </span> {course.enrolledStudentsCount}
       </div>
       {
-        enrolled? (<><button onClick={leaveCourse} className='self-end mt-5 rounded-md bg-red-500 text-white hover:cursor-pointer px-4 py-2'>Leave course</button></>) : (<button className='self-end mt-5 rounded-md px-4 py-2 bg-green-400 hover:cursor-pointer text-white' onClick={enrollInCourse}>Enroll in Course</button>)
+        enrolled? (<button onClick={leaveCourse} className='self-end mt-5 rounded-md bg-red-500 text-white hover:cursor-pointer px-4 py-2'>Leave course</button>) : (<button onClick={enrollInCourse} className='self-end mt-5 rounded-md px-4 py-2 bg-green-400 hover:cursor-pointer text-white'>Enroll in Course</button>)
       }
     </div>
+      )
   )
 }
 

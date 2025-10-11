@@ -24,19 +24,19 @@ const CourseCard = ({course}) => {
   }, []);
 
   return (
-    <Link to={`${fetchPath}/:${course._id}`} state={{course}}>
+    <Link to={`${fetchPath}/${course._id}`} state={{course}}>
       <div className="w-[20vw] h-[50vh] rounded-lg border border-gray-200 shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col overflow-hidden">
         {/* Course Image */}
         <div className="h-[50%] w-full bg-gray-200 overflow-hidden">
           <img
-            src={course.authorDp || "https://via.placeholder.com/200"}
-            alt={`${course.courseName}`}
+            src={course.authorDp}
+            alt={course.courseName}
             className="w-full h-full object-cover"
           />
         </div>
 
         {/* Tutor Info */}
-        <div className="p-4 flex flex-col">
+        <div className="p-4 flex flex-col bg-white h-[50%]">
           <h3 className="text-sm text-gray-800">
             <span className="font-bold">Course:</span>{" "}
             {course.courseName || "Subject not specified"}
